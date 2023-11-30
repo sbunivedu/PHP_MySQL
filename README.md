@@ -1,9 +1,9 @@
 # Basic PHP and Connect to MySQL
 
-The purpose of this exercise is to get you familiar with using PHP script to interact with MySQL database. We assume you have your `public_html` directory setup on `cisone.sbuniv.edu` under your account.
+The purpose of this exercise is to get you familiar with using [PHP script](https://www.w3schools.com/php/) to interact with MySQL database. We assume you have your `public_html` directory setup on `cisone.sbuniv.edu` under your account.
 
 ## Print Array
-PHP variable names start with a `$` and PHP code must appear in `<?php ... ?>` blocks, as follows and in [array.php](array.php).
+PHP variable names start with `$` and PHP code must appear in `<?php ... ?>` blocks, as follows (in [array.php](array.php)):
 
 ```php
 <?php
@@ -34,7 +34,7 @@ Array ( [name] => Magic 7 [year] => 2005 )
 ```
 
 ## Print Array as HTML Table
-To output this array in a prettier [HTML table](https://www.w3schools.com/html/html_tables.asp) format you will have to print some HTML tags as follows:
+To output this array in a prettier [HTML table](https://www.w3schools.com/html/html_tables.asp) format you will have to print some HTML tags as follows (in [print_table.php](print_table.php)):
 ```php
 <!DOCTYPE html>
 <html>
@@ -76,7 +76,7 @@ foreach ($rows as $row){
 ```
 
 ## Fetch Data from MySQL
-The following script (in [query1.php](query1.php)) connects to MySQL with [`mysqli_connect`](https://www.w3schools.com/php/func_mysqli_connect.asp), runs a query with [`mysqli_query`](https://www.w3schools.com/php/func_mysqli_query.asp), and prints the result by fetching one row at a time from the result set with [mysqli_fetch_assoc](https://www.w3schools.com/php/func_mysqli_fetch_assoc.asp). The [mysqli_num_rows](https://www.w3schools.com/php/func_mysqli_num_rows.asp) is used to count the number of rows in the result set.
+The following script (in [query1.php](query1.php)) connects to MySQL with the [`mysqli_connect`](https://www.w3schools.com/php/func_mysqli_connect.asp) function, runs a query with the [`mysqli_query`](https://www.w3schools.com/php/func_mysqli_query.asp) function, and prints the result by fetching one row at a time from the result set with the [mysqli_fetch_assoc](https://www.w3schools.com/php/func_mysqli_fetch_assoc.asp) function. The the [mysqli_num_rows](https://www.w3schools.com/php/func_mysqli_num_rows.asp) function counts the number of rows in the result set.
 
 ```php
 <?php
@@ -112,13 +112,13 @@ if($rowcount == 0){
 }
 ?>
 ```
-The script prints 388269 rows, which is too many. Modify the query so that it prints the first 10 movies in the result set.
+This script prints 388269 rows, which is too many. Modify the query so that it prints the first 10 movies in the result set.
 
 Try to modify this script to print the result in a HTML Table format.
 
 ## Query with Parameters
 
-Write a SQL statement that finds the movies "Tom Cruise" acted in. The IMDB schema is as follows:
+Given the IMDB schema as follows, write a SQL statement that finds the movies "Tom Cruise" acted in.
 ```
 actors(id, first_name, last_name, gender, film_count)
 directors(id, first_name, last_name)
@@ -129,6 +129,7 @@ movies_genres(movie_id, genre)
 roles(actor_id, movie_id, role)
 ```
 
+### Answer Key
 ```SQL
 SELECT name, year FROM actors, movies, roles
   WHERE actors.id = roles.actor_id
@@ -137,7 +138,7 @@ SELECT name, year FROM actors, movies, roles
   AND last_name = 'Cruise';
 ```
 
-The query can be defined as a concatenated string in PHP. Note that `.` is the cancatenation operator in PHP and we need to insert spaces properly so that the query string look right to the DBMS.
+The query can be defined as a concatenated string in PHP. Note that the substrings are stitched together using `.`, which is the cancatenation operator in PHP. We need to insert spaces properly so that the query string look right to the DBMS.
 ```php
 $sql =
   "SELECT name, year FROM actors, movies, roles".
@@ -147,7 +148,7 @@ $sql =
   " AND last_name = 'Cruise'";
 ```
 
-Now we can replace hard-coded names with parameters ([query2.php](query2.php)). Note how the literal values are replaced by variable names.
+Now we can replace hard-coded names with parameters ([query2.php](in query2.php)). Note how in the SQL statement the literal string for names are replaced by two variable names.
 
 ```php
 <?php
@@ -193,7 +194,7 @@ if($rowcount == 0){
 
 ## Get Parameters from Users
 
-One way to send parameters to a PHP script is by appending them to the end of the URL ([GET method](https://www.w3schools.com/tags/ref_httpmethods.asp)). The following script ([params.php](params.php)) expects two parameters from its caller and echos them back.
+One way to send parameters to a PHP script is by appending them to the end of the URL ([GET method](https://www.w3schools.com/tags/ref_httpmethods.asp)). The following script (in [params.php](params.php)) expects two parameters from its caller and echos them back.
 
 ```php
 $first_name = $_GET["firstname"];

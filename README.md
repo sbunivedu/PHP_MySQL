@@ -211,3 +211,22 @@ Point your browser to `cisone.sbuniv.edu/~s123456@sbuniv.edu/test/params.php?fir
 TODO: Change the URL to send different values for the parameters.
 
 TODO: Create a new script that combines [`params.php`](params.php) and [`query2.php`](query2.php) so that it outputs all movies in which a particular actor was in.
+
+## Send Parameters with HTML Form
+
+Manually sending paramters in URL is tedious. We could use an [`HTML Form`](https://www.w3schools.com/html/html_forms.asp) to capture and send parameters.
+
+```php
+<form action="/form.php">
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="firstname"><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lastname">
+	<input type="submit" value="Submit">
+</form>
+
+<?php
+print_r($_GET);
+?>
+```
+This script (in [`form.php`](form.php)) presents a form and sends the form data to itself for processing. It simply echos all parameters sent via the GET method.

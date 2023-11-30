@@ -76,7 +76,7 @@ foreach ($rows as $row){
 ```
 
 ## Fetch Data from MySQL
-The following script (in [query1.php](query1.php)) connects to MySQL with the [`mysqli_connect`](https://www.w3schools.com/php/func_mysqli_connect.asp) function, runs a query with the [`mysqli_query`](https://www.w3schools.com/php/func_mysqli_query.asp) function, and prints the result by fetching one row at a time from the result set with the [mysqli_fetch_assoc](https://www.w3schools.com/php/func_mysqli_fetch_assoc.asp) function. The the [mysqli_num_rows](https://www.w3schools.com/php/func_mysqli_num_rows.asp) function counts the number of rows in the result set.
+The following script (in [query1.php](query1.php)) connects to MySQL with the [`mysqli_connect`](https://www.w3schools.com/php/func_mysqli_connect.asp) function, runs a query with the [`mysqli_query`](https://www.w3schools.com/php/func_mysqli_query.asp) function, and prints the result by fetching one row at a time from the result set with the [`mysqli_fetch_assoc`](https://www.w3schools.com/php/func_mysqli_fetch_assoc.asp) function. The the [`mysqli_num_rows`](https://www.w3schools.com/php/func_mysqli_num_rows.asp) function counts the number of rows in the result set.
 
 ```php
 <?php
@@ -114,7 +114,7 @@ if($rowcount == 0){
 ```
 This script prints 388269 rows, which is too many. Modify the query so that it prints the first 10 movies in the result set.
 
-Try to modify this script to print the result in a HTML Table format.
+TODO: Modify this script to print the result in a HTML Table format.
 
 ## Query with Parameters
 
@@ -202,6 +202,12 @@ $last_name = $_GET["lastname"];
 
 print("first name: ".$first_name);
 print("last name: ".$last_name);
+
+print_r($_GET);
 ```
 
-Point your browser to `cisone.sbuniv.edu/~s123456@sbuniv.edu/test/params.php?firstname=Tom&lastname=Cruise` to see what you get. Change the URL to send different values for the parameters.
+Point your browser to `cisone.sbuniv.edu/~s123456@sbuniv.edu/test/params.php?firstname=Tom&lastname=Cruise` to see what you get. Note that `$_GET` is an assoicative array with all parameters as key-value pairs sent in the URL.
+
+TODO: Change the URL to send different values for the parameters.
+
+TODO: Create a new script that combines [`params.php`](params.php) and [`query2.php`](query2.php) so that it outputs all movies in which a particular actor was in.

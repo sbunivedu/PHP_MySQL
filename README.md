@@ -217,7 +217,7 @@ TODO: Create a new script that combines [`params.php`](params.php) and [`query2.
 Manually sending paramters in URL is tedious. We could use an [`HTML Form`](https://www.w3schools.com/html/html_forms.asp) to capture and send parameters.
 
 ```php
-<form action="/form.php">
+<form action="form.php">
   <label for="fname">First name:</label><br>
   <input type="text" id="fname" name="firstname"><br>
   <label for="lname">Last name:</label><br>
@@ -230,3 +230,22 @@ print_r($_GET);
 ?>
 ```
 This script (in [`form.php`](form.php)) presents a form and sends the form data to itself for processing. It simply echos all parameters sent via the GET method.
+
+TODO: Fill out the form and click on "Submit" to see what you get and explain why the output is the way it is.
+
+## Send Parameters Privatly with POST Method
+Parameters sent via the GET method are appended to the URL, which can be seen easily. The [`POST method`](https://www.w3schools.com/php/php_superglobals_post.asp) uses a separate network packet to send parameters, which will not appear in the URL.
+```php
+<form action="form1.php" method="POST" >
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="firstname"><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lastname">
+	<input type="submit" value="Submit">
+</form>
+
+<?php
+print_r($_POST);
+?>
+```
+This script (in [`form1.php`](form1.php)) uses the POST method to send form data to the server script indicated by the `action` attribute.

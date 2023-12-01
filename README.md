@@ -249,3 +249,29 @@ print_r($_POST);
 ?>
 ```
 This script (in [`form1.php`](form1.php)) uses the POST method to send form data to the server script indicated by the `action` attribute.
+
+## PHP Functions
+
+You can define [PHP functions](https://www.w3schools.com/php/php_functions.asp) to reuse code and parameterize its "function".
+
+```php
+<?php
+function greet($name) {
+  echo "Hello ".$name."!";
+}
+
+function greet1($name) {
+?>
+  <h1>Hello <?=$name?></h1>
+<?php
+}
+
+greet("John");
+greet("Bob");
+greet("Alice");
+
+greet1("John");
+greet1("Bob");
+greet1("Alice");
+?>
+```

@@ -28,7 +28,7 @@ function present_form(){
 </form>
 <?php
 }
-?>
 
 present_form();
 present_form();
+?>

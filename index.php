@@ -6,4 +6,6 @@ include("top.html");
 
 <?php
 include("bottom.html");
+
+//this is a test
 ?>

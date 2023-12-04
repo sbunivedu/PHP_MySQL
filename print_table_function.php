@@ -21,4 +21,6 @@ function print_table($rows, $caption) {
 </table>
 <?php
 }
+
+print_table($rows, "Movies");
 ?>

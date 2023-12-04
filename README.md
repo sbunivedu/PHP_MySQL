@@ -22,7 +22,7 @@ for($i=0; $i<count($rows); $i++){
 ?>
 ```
 
-To run this example, clone this repo on `cisone.sbuniv.edu` under your `public_html` directory, change the name of your repository directory to `test`, and point your browser to `http://cisone.sbuniv.edu/~s123456@sbuniv.edu/test/array.php` (replace s123456 with your student ID).
+To run this example, clone this repo on `cisone.sbuniv.edu` under your `public_html` directory, change the name of your repository directory to `test`, and point your browser to [`http://cisone.sbuniv.edu/~s123456@sbuniv.edu/test/array.php`](http://cisone.sbuniv.edu/~s123456@sbuniv.edu/test/array.php) (replace s123456 with your student ID).
 
 You should see three arrays as the output of the script. You can right-click on the webpage and select "View Page Source" to see the script output AS IS.
 The first array is an array of arrays. It is a number-indexed array, whose elements are string-indexed associative arrays. This is the type of array you will get as query results.
@@ -148,7 +148,7 @@ $sql =
   " AND last_name = 'Cruise'";
 ```
 
-Now we can replace hard-coded names with parameters ([query2.php](in query2.php)). Note how in the SQL statement the literal string for names are replaced by two variable names.
+Now we can replace hard-coded names with parameters (in [query2.php](query2.php)). Note how in the SQL statement the literal strings for names are replaced by two variable names.
 
 ```php
 <?php
@@ -206,7 +206,7 @@ print("last name: ".$last_name);
 print_r($_GET);
 ```
 
-Point your browser to `cisone.sbuniv.edu/~s123456@sbuniv.edu/test/params.php?firstname=Tom&lastname=Cruise` to see what you get. Note that `$_GET` is an assoicative array with all parameters as key-value pairs sent in the URL.
+Point your browser to [`cisone.sbuniv.edu/~s123456@sbuniv.edu/test/params.php?firstname=Tom&lastname=Cruise`](cisone.sbuniv.edu/~s123456@sbuniv.edu/test/params.php?firstname=Tom&lastname=Cruise) to see what you get. Note that `$_GET` is an assoicative array with all parameters as key-value pairs sent in the URL.
 
 TODO: Change the URL to send different values for the parameters.
 
@@ -222,7 +222,7 @@ Manually sending paramters in URL is tedious. We could use an [`HTML Form`](http
   <input type="text" id="fname" name="firstname"><br>
   <label for="lname">Last name:</label><br>
   <input type="text" id="lname" name="lastname">
-	<input type="submit" value="Submit">
+  <input type="submit" value="Submit">
 </form>
 
 <?php
@@ -233,15 +233,15 @@ This script (in [`form.php`](form.php)) presents a form and sends the form data 
 
 TODO: Fill out the form and click on "Submit" to see what you get and explain why the output is the way it is.
 
-## Send Parameters Privatly with POST Method
-Parameters sent via the GET method are appended to the URL, which can be seen easily. The [`POST method`](https://www.w3schools.com/php/php_superglobals_post.asp) uses a separate network packet to send parameters, which will not appear in the URL.
+## Send Parameters Privately with POST Method
+Parameters sent via the GET method are appended to the URL, which can be seen easily. The [`POST method`](https://www.w3schools.com/php/php_superglobals_post.asp) uses a separate network packet to send the parameters, which will not appear in the URL.
 ```php
 <form action="form1.php" method="POST" >
   <label for="fname">First name:</label><br>
   <input type="text" id="fname" name="firstname"><br>
   <label for="lname">Last name:</label><br>
   <input type="text" id="lname" name="lastname">
-	<input type="submit" value="Submit">
+  <input type="submit" value="Submit">
 </form>
 
 <?php
@@ -281,7 +281,7 @@ function present_form(){
   <input type="text" id="fname" name="firstname"><br>
   <label for="lname">Last name:</label><br>
   <input type="text" id="lname" name="lastname">
-	<input type="submit" value="Submit">
+  <input type="submit" value="Submit">
 </form>
 <?php
 }
@@ -290,3 +290,57 @@ function present_form(){
 present_form();
 present_form();
 ```
+In the following example (in [`print_table_function.php`](print_table_function.php)), we extact the table printing code into it's own function so that it can be reused.
+
+```php
+<?php
+$rows = array(
+  ["name"=>"Beauty Shop", "year"=>"2005"],
+  ["name"=>"Magic 7", "year"=>"2005"]);
+
+function print_table($rows, $caption) {
+?>
+<table>
+  <caption> <?= $caption ?> </caption>
+  <tr>
+    <th>#</th> <th>Title</th> <th>Year</th>
+  </tr>
+
+  <?php $i = 1; foreach ($rows as $row) { ?>
+    <tr>
+      <td><?= $i ?></td>
+      <td><?= htmlspecialchars($row["name"]) ?></td>
+      <td><?= htmlspecialchars($row["year"]) ?></td>
+    </tr>
+  <?php $i++; } ?>
+</table>
+<?php
+}
+?>
+```
+## PHP Include
+Another way to reuse PHP code is to use the [include](https://www.w3schools.com/php/php_includes.asp) statement, which copies code from the included file to the including file. PHP will replace the `include` statements will the code in the included files. A common use case is to define common page headers and footers in their respective files and include them in all the PHP generated web pages so that the headers and footers are guaranteed to look the same.
+
+```php
+<?php
+include(top.html);
+?>
+
+<h1>Welcome! Bienvenue! Willkommen! 欢迎! ¡Bienvenido! Добро пожаловать!</h1>
+
+<?php
+include(bottom.html);
+?>
+```
+
+## PHP Redirect
+
+```php
+function redirect($url) {
+  header('Location: '.$url);
+  die(); //prevent further code execution
+}
+
+redirect("https://www.sbuniv.edu/");
+```
+

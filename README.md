@@ -349,3 +349,34 @@ redirect("https://www.sbuniv.edu/");
 ## PHP Sessions
 A [PHP session](https://www.w3schools.com/php/php_sessions.asp) allows the web server to group individual HTTP requests into a sequence, e.g. related to each authenticated user.
 
+Here is an example of a login page.
+```php
+<?php
+session_start();
+
+if(isset($_SESSION['username'])){
+  header("Location: hello.php");
+}else if(isset($_POST['username'])){
+  session_start();
+  $_SESSION['username']=$_POST['username'];
+  header("Location: hello.php");
+}
+?>
+
+<form action="login.php" method="POST" >
+  <label for="username">User name:</label><br>
+  <input type="text" id="username" name="username"><br>
+  <label for="password">Password:</label><br>
+  <input type="password" id="password" name="password">
+	<input type="submit" value="Submit">
+</form>
+```
+
+Here is an example of logout page.
+```php
+<?php
+session_start();
+session_destroy();
+header("Location: login.php");
+?>
+```

@@ -1,11 +1,14 @@
 <?php
+session_start();
+
 if(isset($_SESSION['username'])){
   header("Location: hello.php");
 }else if(isset($_POST['username'])){
   session_start();
-  $_SESSION["username"]=$_POST['username'];
+  $_SESSION['username']=$_POST['username'];
   header("Location: hello.php");
 }
+?>
 
 <form action="login.php" method="POST" >
   <label for="username">User name:</label><br>
